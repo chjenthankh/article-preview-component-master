@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap');
+$veryDarkGrayishBlue: hsl(217, 19%, 35%);
+$desaturatedDarkBlue: hsl(214, 17%, 51%);
+$grayishBlue: hsl(212, 23%, 69%);
+$lightGrayishBlue: hsl(210, 46%, 95%);
+
+*::before,
+*::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-size: 13px;
+    font-family: 'Manrope', sans-serif;
+    background-color: $lightGrayishBlue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+@keyframes notifyGrowth  {
+    from{
+        opacity: 0;
+       transform: scale(0);
+    }
+    to{
+        opacity: 1;
+       transform: scale(1);
+    }
+}
+.container{
+    max-width: 100%;
+    margin:0 auto;
+    .wrapper{
+        width: 750px;
+        height: 300px;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);  
+        .container__img{
+            overflow: hidden;
+            max-width: 350px;
+            height: 300px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover; 
+            }
+        }
+        .content{
+            flex:1;
+            padding: 30px;
+            h1{
+                color: $veryDarkGrayishBlue;
+                font-size: 1.5rem;
+                font-weight: 700;
+            }
+            p{
+                margin: 0;
+                font-size: 1rem;
+                color: $desaturatedDarkBlue;
+                font-weight: 500;
+            }
+            .profile{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 20px;
+                &__info{
+                    display: flex;
+                    align-items: center;
+                    img{ 
+                        width: 40;
+                        border-radius: 50%;
+                        height: 40px;
+                    }
+                }
+                &__content{
+                    padding: 20px;
+                    h3{
+                        color: $veryDarkGrayishBlue;
+                        font-size: 1rem;
+                        margin: 0;
+                    }
+                    p{
+                        font-size: 1rem;
+                        color: $desaturatedDarkBlue;
+                        font-weight: 500;
+                    }
+                }
+                &__share{
+                    padding: 10px;
+                    border-radius: 50%;
+                    background-color: $lightGrayishBlue;
+                    position: relative;
+                    z-index: 2;
+                    &:hover{
+                        background-color:$veryDarkGrayishBlue;
+                        img{
+                            filter: brightness(100);
+                        }
+                        .profile__share--social{
+                            display: flex;
+                        }
+                    }
+                }
+                &__share--social{     
+                    position: absolute;
+                    display: none;
+                    background-color: $veryDarkGrayishBlue;
+                    top:-100px;
+                    right: -100px;
+                    padding: 15px;
+                    width: 200px;
+                    letter-spacing: 3px;
+                    border-radius: 10px;
+                    animation: notifyGrowth ease-in 0.3s;
+                    p{
+                        color:$grayishBlue
+                    }
+                    img{
+                        object-fit: cover;
+                        
+                    }
+                    .share-btn{
+                        display: flex;
+                        flex:1;
+                        align-items: center;
+                        justify-content: space-evenly;
+                    }
+                    .back-btn{
+                        display: none;
+                        margin-right: 5px;
+                        padding: 10px;
+                        background-color: $grayishBlue;
+                        border-radius: 50%;
+                        
+                        
+                    }
+                    &::before{
+                        content: "";
+                        position: absolute;
+                        border: 15px solid;
+                        border-color: $veryDarkGrayishBlue transparent transparent transparent;
+                        width: 20px;
+                        height: 20px;
+                        bottom: -30px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        width: 100%;
+                        height: 30px;
+                        bottom: -30px;
+                    }
+                }
+              
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 375px){
+    html{
+        display: block;
+        height: unset;
+    }
+    .container{
+        .wrapper{
+            max-width: 350px;
+            height: 100%;
+            .container__img{
+                height: 200px;
+            }
+            .content{
+                padding: 20px;
+                h1{
+                    margin-top: 0;
+                }
+              
+                .profile{
+                    margin-top: 10px;
+                    &__share{
+                        &:hover{
+                            .profile__share--social{
+                                display: flex;
+                            }
+                        }
+                    }
+                    &__share--social{
+                        position: absolute;
+                        bottom: -10px;
+                        right: -16px;
+                        width: 300px;
+                        padding: 20px;
+                        align-items: center;
+                        top:0;
+                        &::before{
+                            display: none;
+                        }
+                        .back-btn{
+                         display: flex;   
+                        }
+                    }
+                    
+                }
+                
+            }
+        }
+    }
+}
